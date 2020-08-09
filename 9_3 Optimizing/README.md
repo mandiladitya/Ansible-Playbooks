@@ -39,9 +39,11 @@
 
 
 # Delegating task to a host outside the play
-    Ansible can be configured to run a task on a host other than the one that is part of the playwith delegate_to. The delegated module will
-    still run once for every machine, but instead of running on the target machine, it will run on the host specified by delegate_to.
+    Ansible can be configured to run a task on a host other than the one that is part of the playwith delegate_to.
+    The delegated module will still run once for every machine, but instead of running on the target machine, it 
+    will run on the host specified by delegate_to.
     Addressing hosts that are in the inventory is straightforwardd: just address the hostname.
 
-s
+# lab-2 outside the play
+
 

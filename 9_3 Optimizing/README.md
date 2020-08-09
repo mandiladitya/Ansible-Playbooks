@@ -29,7 +29,16 @@ lab localhost ( processes, uptime, and ip addresses )
 
     • Use delegeate_to: hostname to use delegation
     • Use local_action a shortcut to delegate_to: localhost
-    • This will run on the ANsible master node
+    • This will run on the Ansible master node
     • Notice that the localhost entry is implicit and doesn't have to be defined in the inventory
     • Addressing hosts that are in the inventory is straightforwardd: just address the hostname
           ansible localhost -m command -a'hostname'
+
+
+# Delegating task to a host outside the play
+    Ansible can be configured to run a task on a host other than the one that is part of the playwith delegate_to. The delegated module will
+    still run once for every machine, but instead of running on the target machine, it will run on the host specified by delegate_to.
+    Addressing hosts that are in the inventory is straightforwardd: just address the hostname.
+
+s
+

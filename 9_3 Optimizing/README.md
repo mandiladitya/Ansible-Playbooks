@@ -3,7 +3,7 @@ In order to complete some configuration tasks, it may be necessary for actions t
 Some examples of this might include an action that requires waiting for the server to be restarted (Selinux disabled to enforcing mode), adding
 a server to a load balancer or a monitoring server, or making changes to the DHCP or DNS database needed for the server being configured.
 Delegation can help by performing necessary actions for tasks on hosts other than the managed host being targeted by the play in the inventory.
-Some scenarios that delegation can handle include:
+Some scenarios that delegation can handle include: <br/>
  • Delegating a task to the local machine
  • Delegating a task to a host outside the play
  • Delegating a task to a host that exists in the inventory

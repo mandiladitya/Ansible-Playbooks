@@ -29,6 +29,5 @@ lab localhost ( processes, uptime, and ip addresses )
     • Use local_action a shortcut to delegate_to: localhost
     • This will run on the ANsible master node
     • Notice that the localhost entry is implicit and doesn't have to be defined in the inventory
-    • Addressing hosts that are in the inventory is straightforwardd: just address the hostname  <br/>
-
-    ansible localhost -m command -a'hostname'
+    • Addressing hosts that are in the inventory is straightforwardd: just address the hostname
+          ansible localhost -m command -a'hostname'

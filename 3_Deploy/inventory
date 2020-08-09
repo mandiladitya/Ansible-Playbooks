@@ -1,0 +1,16 @@
+#A static inventory file is an INI-like text file that specifies the managed hosts that Ansible targets.
+
+[webservers]
+node1.example.com
+
+[ftpservers]
+node2.example.com
+
+
+[infrastructure]
+node[1:2].example.com
+
+[nested:children]
+webservers
+ftpservers
+

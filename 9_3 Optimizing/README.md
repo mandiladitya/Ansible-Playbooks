@@ -13,4 +13,5 @@ Some scenarios that delegation can handle include: <br/>
 
  
  Delegating tasks to the local machine When any action needs to be performed on the node running Ansible, it can be delegated to localhost by
- using #delegate_to: localhost.
+ using
+#delegate_to: localhost.

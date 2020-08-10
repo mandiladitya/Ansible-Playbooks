@@ -1,0 +1,9 @@
+---
+ - name: delegation outside the play
+   hosts: node2.example.com
+   tasks:
+    - name: gather facts
+      copy:
+        content: "{{ ansible_nodename }}"
+        dest: /tmp/myfacts.yml
+      delegate_to: node1.example.com

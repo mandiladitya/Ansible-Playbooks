@@ -115,3 +115,9 @@ on to the next task. Add ignore_erros as well, to prevent an error condition ari
 this task fail.
 
     ansible-playbook wait_for.yml
+
+# Asynchronous task status
+While an asynchronous task is running, you can also check its completion status by using Ansible async_status module.
+The module requires the job or task identifier as its parameter.
+    
+    ansible-playbook async_status.yml

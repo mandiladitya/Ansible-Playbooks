@@ -66,4 +66,10 @@
       delegating hosts
         ansible-playbook outside_inv.yml -vvv
 
+# delegated facts
+    Any facts gathered by a delegated task are assigned by default to the delegate_to host,instead of the host which actually produced the facts.
+    The following example shows a task file that will loop through a list of inventory servers to gather facts
+    
+    • ansible-playbook delegatefacts.yml
 
+    When the previous playbook is run, the output shows the gathered facts of 172.31.52.36  as the task delegated to the host from the node2.example.com inventory group instead of 172.31.57.100 

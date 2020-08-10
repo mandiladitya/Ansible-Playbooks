@@ -29,9 +29,51 @@ always be 1 or greater.
       hosts: webservers
       serial: 2
       tasks:
-      
-      
+          
     ...   
-            
+           
     ansible-playbook play.yml  --forks 2
-    
+   
+ -
+The serial keyword can also be specified as a percentage, which will be applied to the total number of hosts in a play,
+in order to determine the number of hosts per pass:
+
+    ---
+    - name: test play
+      hosts: webservers
+      serial: "30%"
+
+If the number of hosts does not divide equally into the number of passes, the final pass will contain the remainder.
+As of Ansible 2.2, the batch sizes can be specified as a list, as follows:
+
+    ---
+    - name: test play
+      hosts: webservers
+      serial:
+       - 1
+       - 5
+       - 10
+
+In the above example, the first batch would contain a single host, the next would contain 5 hosts, and (if there are any hosts
+left), every following batch would contain 10 hosts until all available hosts are used.
+It is also possible to list multiple batch sizes as percentages:
+
+    ---
+    - name: test play
+      hosts: webservers
+      serial:
+       - "10%"
+       - "20%"
+       - "100%"
+
+You can also mix and match the values:
+
+     ---
+    - name: test play
+      hosts: webservers
+      serial:
+       - 1
+       - 5
+       - "20%"
+
+

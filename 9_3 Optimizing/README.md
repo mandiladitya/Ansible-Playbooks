@@ -57,6 +57,7 @@
     and details used for the managed host to connect to the delegating host. Toadjust the connection details, use the
     add_host module to  create an ephemeral host in yourinventory with connection data defined
     
+# lab-3 outside the inventory ( dbbackup )
     • When addressing a host that is not in the inventory, credentials are needed.
     • Also, the delegated host needs to be configured to be connected by Ansible (sudo, ssh)
     • When accessing a host outside of the inventory, a temporary entry in the inventory must be  created by 

@@ -75,5 +75,31 @@ You can also mix and match the values:
        - 1
        - 5
        - "20%"
+ 
 
 
+# Asynchronous tasks
+There are some system operations that take a while to complete. For example, when downloadinga large file or rebooting a server,
+such tasks takes a long time to complete. Using parallelism andforks, Ansible starts the command quickly on the managed hosts, then
+polls the hosts for statusuntil they are all finished.
+
+To run an operation in parallel, use the async and poll keywords. The async keyword triggersAnsible to run the job in the background 
+and can be checked later, and its value will be themaximum time that Ansible will wait for the command to complete. The value of poll 
+indicates to Ansible how often to poll to check if the command has been completed. The default pollvalue is 10 seconds
+In the example, the get_url module takes a long time to download a file and async: 3600 instructs Ansible to wait for 3600 
+seconds to complete the task and poll: 10 is the pollingtime in seconds to check if the download is complete.
+
+    ----
+    - name: Long running task 
+      hosts: all  
+      tasks:    
+       - name: Download big file
+         get_url: 
+          url: http://crux.example.com/bigfile.tar.gz
+          async: 3600
+          poll: 10
+/.
+
+    ansible-playbook waitforme.yml
+        
+ 

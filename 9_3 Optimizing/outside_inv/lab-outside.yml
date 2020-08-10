@@ -1,0 +1,64 @@
+---
+- name: play 1 deploy httpd server
+  hosts: node1.example.com
+  tasks:
+
+   - name: install listed packages
+     yum:
+      name: 
+       - httpd
+       - firewalld
+      state: present
+
+   - name: create index page
+     copy:
+      content: This server maanged by Ansible
+      dest: /var/www/html/index.html
+
+   - name: start and enabled services
+     service:
+      name: "{{ item }}"
+      state: started
+      enabled: true
+     with_items: 
+      - httpd
+      - firewalld
+
+   - name: open firewll ports
+     firewalld:
+      service: "{{ item }}"
+      permanent: yes
+      immediate: yes
+      state: enabled
+     with_items: 
+      - http
+      - mysql
+
+- name: play2  deploy database server
+  hosts: node2.example.com
+  tasks:
+
+   - name: install listed packages
+     yum:
+      name: 
+       - mariadb-server
+       - firewalld
+      state: present
+
+   - name: start and enabled services
+     service:
+      name: "{{ item }}"
+      state: started
+      enabled: true
+     with_items: 
+      - mariadb
+      - firewalld
+
+   - name: open firewll ports
+     firewalld:
+      service: "{{ item }}"
+      permanent: yes
+      immediate: yes
+      state: enabled
+     with_items: 
+      - mysql

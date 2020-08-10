@@ -1,0 +1,19 @@
+---
+- name: backup dbservers
+  hosts: node2.example.com
+  tasks:
+
+   - name: stopped httpd service
+     service:
+      name: httpd
+      state: stopped
+     delegate_to: node1.example.com
+
+   - name: backup test database from node2.example.com 
+     shell:  sudo mysqldump test > /home/ansible-db-backup.sql  --user=root 
+
+   - name: started httpd service
+     service:
+      name: httpd
+      state: started
+     delegate_to: node1.example.com

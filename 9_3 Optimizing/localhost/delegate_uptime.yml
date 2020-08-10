@@ -1,0 +1,22 @@
+---
+ - name: delegation local_action example
+   hosts: node2.example.com
+   tasks:
+    - name: Get information on managed host uptime
+      command: uptime
+      register: remote_uptime
+      changed_when: false
+
+    - name: Get information on localhost host uptime
+      command: uptime
+      delegate_to: localhost
+      register: local_uptime
+      changed_when: false
+
+    - name: display information about localhost uptime
+      debug:
+       msg: "{{ local_uptime.stdout }}"
+
+    - name: display information about managed host uptime
+      debug:
+       msg: "{{ remote_uptime.stdout }}"

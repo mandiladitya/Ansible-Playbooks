@@ -1,0 +1,22 @@
+---
+ - name: delegation local_action example
+   hosts: node2.example.com
+   tasks:
+    - name: Get information on managed host ip address
+      command: hostname -i
+      register: remote_address
+      changed_when: false
+
+    - name: Get information on localhost host ip address
+      command: hostname -i
+      delegate_to: localhost
+      register: local_address
+      changed_when: false
+
+    - name: display information about localhost ip address
+      debug:
+       msg: "{{ local_address.stdout }}"
+
+    - name: display information about managed host uptime
+      debug:
+       msg: "{{ remote_address.stdout }}"

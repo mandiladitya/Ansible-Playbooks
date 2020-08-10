@@ -1,0 +1,12 @@
+---
+- name: add hosts
+  hosts: node2.example.com
+  tasks:
+
+   - name: gather facts from node2.example.com
+     setup:
+     delegate_to: "{{item}}"
+     with_items: "{{groups['node1.example.com']}}"
+   
+   - debug:
+      var: ansible_eth0['ipv4']['address']

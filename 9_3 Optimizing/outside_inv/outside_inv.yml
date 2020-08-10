@@ -1,0 +1,25 @@
+---
+- name: backup dbservers
+  hosts: node2.example.com
+  tasks:
+
+   - name: add another host
+     add_host:
+      name: proxy
+      ansible_host: node1.example.com
+      ansible_user: ec2-user
+
+   - name: stopped httpd service
+     service:
+      name: httpd
+      state: stopped
+     delegate_to: proxy
+
+   - name: backup test database from node2.example.com 
+     shell:  sudo mysqldump mysql > /home/ansible-db-proxy-backup.sql  --user=root 
+
+   - name: started httpd service
+     service:
+      name: httpd
+      state: started
+     delegate_to: proxy

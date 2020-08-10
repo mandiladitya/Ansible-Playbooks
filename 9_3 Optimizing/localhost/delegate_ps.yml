@@ -1,0 +1,22 @@
+---
+ - name: delegation local_action example
+   hosts: node2.example.com
+   tasks:
+    - name: Get information on managed host processes
+      command: ps
+      register: remote_processes
+      changed_when: false
+
+    - name: Get information on localhost host processes
+      command: ps
+      delegate_to: localhost
+      register: local_processes
+      changed_when: false
+
+    - name: display information about localhost processes
+      debug:
+       msg: "{{ local_processes.stdout }}"
+
+    - name: display information about managed host processes
+      debug:
+       msg: "{{ remote_processes.stdout }}"

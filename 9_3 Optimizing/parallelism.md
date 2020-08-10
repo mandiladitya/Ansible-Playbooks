@@ -23,3 +23,15 @@ the fork key was set to something higher). The serial keyword can also be specif
 applied to the total numberof hosts in the play. If the number of hosts does not divide equally into the number 
 of passes, the final pass will contain the modulus. Regardless of the percentage, the number of hosts per passwill
 always be 1 or greater.
+
+    ----
+    - name: Limit the number of hosts this play runs on at the same time
+      hosts: webservers
+      serial: 2
+      tasks:
+      
+      
+    ...   
+            
+    ansible-playbook play.yml  --forks 2
+    

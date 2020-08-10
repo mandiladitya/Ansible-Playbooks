@@ -52,6 +52,15 @@
 
 
 
-
+# Delegating a task to a host that does not exist in the inventory
+    When delegating a task to a host that does not exist in the inventory, Ansible will use the same connection type and details
+    used for the managed host to connect to the delegating host. Toadjust the connection details, use the add_host module to 
+    create an ephemeral host in yourinventory with connection data defined
+    
+    • When addressing a host that is not in the inventory, credentials are needed.
+    • Also, the delegated host needs to be configured to be connected by Ansible (sudo, ssh)
+    • When accessing a host outside of the inventory, a temporary entry in the inventory must be  created by using add_host
+    • Ansible will u se the same connection type and details used for the managed host to connect to the delegating hosts
+        ansible-playbook outside_inv.yml -vvv
 
 

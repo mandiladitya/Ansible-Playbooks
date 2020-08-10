@@ -72,4 +72,5 @@
     
     • ansible-playbook delegatefacts.yml
 
-    When the previous playbook is run, the output shows the gathered facts of 172.31.52.36  as the task delegated to the host from the node2.example.com inventory group instead of 172.31.57.100 
+    When the previous playbook is run, the output shows the gathered facts of 172.31.52.36  as the task delegated to the host from 
+    the node2.example.com inventory group instead of 172.31.57.100 

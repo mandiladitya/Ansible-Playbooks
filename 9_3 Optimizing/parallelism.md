@@ -107,3 +107,11 @@ seconds to complete the task and poll: 10 is the polling time in seconds to chec
 
 # Deferring asynchronous tasks
 
+The wait_for module can be used in a task to check if a certain condition was met.
+Using this module may be useful to verify successful restart of servers, update system,
+and download a large file, etc.
+Use poll: 0 in a task to tell Ansible not to wait for completion of this task, but to move
+on to the next task. Add ignore_erros as well, to prevent an error condition arising and have
+this task fail.
+
+    ansible-playbook wait_for.yml

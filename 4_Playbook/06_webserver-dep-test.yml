@@ -1,0 +1,44 @@
+---
+- name: deploy webserver and test
+  hosts: node1.example.com
+  tasks:
+    - name: install httpd and firewalld
+      yum:
+        name:
+          - httpd
+          - firewalld
+        state: latest
+
+    - name: install welcome page
+      copy:
+        content: "Hello world"
+        dest: /var/www/html/index.html
+
+    - name: start and enable web services
+      service:
+        name: httpd
+        enabled: true
+        state: started
+
+    - name: start and enable firewalld services
+      service:
+        name: firewalld
+        enabled: true
+        state: started
+
+    - name: open firewalld
+      firewalld:
+        service: http
+        permanent: true
+        state: enabled
+        immediate: yes
+
+- name: test webserver access
+  hosts: localhost
+  become: no
+  tasks:
+    - name: connect to the web server
+      uri:
+        url: http://node1.example.com
+        return_content: yes
+        status_code: 200

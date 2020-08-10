@@ -1,0 +1,19 @@
+---
+- name: remove httpd 
+  hosts: node1.example.com
+  tasks:
+    - name: close firewall
+      firewalld:
+        service: http
+        permanent: yes
+        state: disabled
+
+    - name: remove index.html file
+      file:
+        path: /var/www/html/index.html
+        state: absent
+
+    - name: remove httpd package
+      package:
+        name: httpd
+        state: absent

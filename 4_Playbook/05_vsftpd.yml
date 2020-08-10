@@ -1,0 +1,16 @@
+---
+- name: deploy vsftpd
+  hosts: node1.example.com
+  tasks: 
+  - name: install vsftpd
+    yum: name=vsftpd
+
+  - name: enable vsftpd
+    service: name=vsftpd enabled=true
+
+  - name: create readme file
+    copy:
+      content: "welcome to this FTP server"
+      dest: /var/ftp/pub/README
+      force: no
+      mode: 0444

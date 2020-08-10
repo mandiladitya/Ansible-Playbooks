@@ -45,11 +45,12 @@
     Addressing hosts that are in the inventory is straightforwardd: just address the hostname.
 
 # lab-2 outside the play ( dbbackup )
-    we are using two-tier architecture (database and webserver). now backup the database server with the help of ansible
-    control node ,  before that we will have to stopped the  service of webserver and start the service again when the 
+    The following example shows Ansible code that will delegate a task to an outside machine. We are using two-tier architecture
+    (database and webserver). now backup the database server with the help of ansible
+    control node ,  before that we will have to stop  the  service of webserver and start the service again when the 
     backup is done.
 
-s
+
 
 
 
